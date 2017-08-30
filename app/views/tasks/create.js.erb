@@ -1,0 +1,6 @@
+$('#mynewtask').modal('hide');
+$('.task_name').val('');
+$('.task_description').val('');
+$("#my-tasks").append('<%= j render @task %>');
+location.reload();
+$('#task_<%= @task.id %>').hide().fadeIn(500);

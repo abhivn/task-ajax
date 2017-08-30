@@ -1,0 +1,70 @@
+
+<h1>Tasks</h1>
+
+<div class="container">
+
+    <div class="row">
+      <div class="text-center">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mynewtask">
+            New Task
+          </button>
+      </div>
+    </div>
+
+    <br>
+    <hr>
+
+    <div class="row" id="container_tasks">
+        <table class="table" id="tasks-tbl">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Actions</th>
+              <th></th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody id="my-tasks">
+          <%= render @tasks %>
+          </tbody>
+        </table>
+        <div align="center">
+        <%= will_paginate @tasks %>
+      </div>
+    </div>
+
+    <!-- Modal  create action -->
+  <%= form_for(@task, remote: true) do |f| %>
+    <div class="modal fade" id="mynewtask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Task</h4>
+        </div>
+
+        <div class="modal-body">
+          <div class="field">
+            <%= f.label :name %><br>
+            <%= f.text_field :name, class: "form-control task_name" %>
+          </div>
+          <div class="field">
+            <%= f.label :description %><br>
+            <%= f.text_area :description, class: "form-control task_description" %>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewpostclose">Close</button>
+          <%= submit_tag "Create", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+    </div>
+  <% end %>
+<!-- Modal -->
+  </div>
